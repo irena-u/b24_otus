@@ -85,6 +85,8 @@
 /welcome/
 /workgroups/
 
+/vendor/
+
 *.zip
 *.tar.gz
 *.back
