@@ -6,5 +6,5 @@ use App\Models\AbstractIblockPropertyValuesTable;
 
 class DoctorsServicesPropertyValuesTable extends AbstractIblockPropertyValuesTable
 {
-    const IBLOCK_ID = 17;
+    const IBLOCK_ID = 19;
 }

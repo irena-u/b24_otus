@@ -90,10 +90,11 @@ if (!$page && !$action) {
     ]);
     if ($dbDoctors) {
         $arDoctors = $dbDoctors->fetchAll();
-    }
-
-    if (!empty($arDoctors)) {?>
+    }?>
     <a class="ui-btn ui-btn-default" href="/doctors/?action=add">Добавить</a>
+    <?php
+    if (!empty($arDoctors)) {?>
+    
     <div class="container py-4">
         <h2 class="mb-4">Список врачей</h2>
 

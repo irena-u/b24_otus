@@ -7,7 +7,7 @@ use App\Models\AbstractIblockPropertyValuesTable;
 
 class DoctorsPropertyValuesTable extends AbstractIblockPropertyValuesTable
 {
-    public const IBLOCK_ID = 16;
+    public const IBLOCK_ID = 18;
 
     public static function getMap(): array
     {
