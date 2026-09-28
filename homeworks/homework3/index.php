@@ -12,17 +12,16 @@ Asset::getInstance()->addCss('//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bo
     <h1 class="mb-3"><? $APPLICATION->ShowTitle() ?></h1>
 
     <h4 class="mb-3">Пояснительная записка</h4>
-    <div style="color: red;font-style: italic;">
-        Тут добавить описание того что и как было реализовано.
-    </div>
+    <ul>
+        <li>Создано 2 списка с врачами и процедурами которые они выполняют;</li>
+        <li>Процедуры привязаны к врачам;</li>
+        <li>Создана страница список врачей, список процедур и страница где мы кликаем по врачу и видим процедуры которые он делает.</li>
+        <li>Использован абстрактный класс для запросов к инфоблоку;
+        <li>Реализована возможность добавления процедуры, врача и процедур, которые он выполняет.
+    </ul>
     <br>
     <br>
     <hr>
-
-    <div style="color: red;font-style: italic;">
-        &darr;&darr;&darr; ссылки ниже заменить на свои &darr;&darr;&darr;
-    </div>
-
 
     <div class="card shadow-sm mt-4">
         <div class="card-header bg-success text-white">
@@ -30,7 +29,7 @@ Asset::getInstance()->addCss('//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bo
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item list-group-item-action">
-                <a href="#"
+                <a href="/doctors/"
                    class="d-flex justify-content-between align-items-center">
                 <span>
                     Список врачей
@@ -41,7 +40,7 @@ Asset::getInstance()->addCss('//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bo
                 </a>
             </li>
             <li class="list-group-item list-group-item-action">
-                <a href="#"
+                <a href="/doctors/?page=services"
                    class="d-flex justify-content-between align-items-center">
                 <span>
                     Список процедур
@@ -52,10 +51,10 @@ Asset::getInstance()->addCss('//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bo
                 </a>
             </li>
             <li class="list-group-item list-group-item-action">
-                <a href="#"
+                <a href="/doctors/index.php?page=ivanov"
                    class="d-flex justify-content-between align-items-center">
                 <span>
-                    Врачи и процедуры
+                    Врач и процедуры
                 </span>
                     <span class="badge bg-secondary">
                    Ссылка на просмотр
@@ -63,7 +62,7 @@ Asset::getInstance()->addCss('//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bo
                 </a>
             </li>
             <li class="list-group-item list-group-item-action">
-                <a href="/bitrix/admin/fileman_file_view.php?path=/local/App/Debug/Log.php"
+                <a href="/bitrix/admin/fileman_file_view.php?path=/local/App/Models/Lists/DoctorsPropertyValuesTable.php"
                    class="d-flex justify-content-between align-items-center">
                 <span>
                     Ссылки на просмотр кода основных файлов ДЗ (связь таблиц и ORM)
