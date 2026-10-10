@@ -27,7 +27,7 @@ $dbResult = ConfScheduleTable::getList([
     'CONF_NAME'      => 'CONF.NAME',
 
      'TOPIC'],
-//"filter" => ['CONF_ID' => 43],
+	//"filter" => ['CONF_ID' => 43],
 "order" => ["START_DATETIME" => 'ASC'],
 ]);
 

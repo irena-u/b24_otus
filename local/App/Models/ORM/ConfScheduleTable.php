@@ -14,6 +14,7 @@ use Bitrix\Main\ORM\Query\Join;
 use App\Models\Lists\ConfEventsPropertyValuesTable;
 use App\Models\Lists\ConfRoomsPropertyValuesTable;
 use App\Models\Lists\ConfSpeakersPropertyValuesTable;
+use Bitrix\Main\Loader;
 
 /** Описание ORM для таблицы, связывающей спикера, конференцию и аудиторию по времени */
 class ConfScheduleTable extends DataManager
@@ -85,9 +86,12 @@ class ConfScheduleTable extends DataManager
     public static function getMap()
     {
         //получаем классы инфоблоков
-        $confIblockClass = \Bitrix\Iblock\Iblock::wakeUp(21)->getEntityDataClass();
-        $speakerIblockClass = \Bitrix\Iblock\Iblock::wakeUp(20)->getEntityDataClass();
-        $roomIblockClass = \Bitrix\Iblock\Iblock::wakeUp(22)->getEntityDataClass();
+        if (!Loader::includeModule('iblock')) {
+            die('Модуль iblock не установлен');
+        }
+            $confIblockClass = \Bitrix\Iblock\Iblock::wakeUp(21)->getEntityDataClass();
+            $speakerIblockClass = \Bitrix\Iblock\Iblock::wakeUp(20)->getEntityDataClass();
+            $roomIblockClass = \Bitrix\Iblock\Iblock::wakeUp(22)->getEntityDataClass();
 
         return [
             (new IntegerField('ID'))
