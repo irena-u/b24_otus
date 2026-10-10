@@ -18,16 +18,31 @@ use App\Models\Lists\ConfSpeakersPropertyValuesTable;
 /** Описание ORM для таблицы, связывающей спикера, конференцию и аудиторию по времени */
 class ConfScheduleTable extends DataManager
 {
+    /**
+     * Имя таблицы
+     *
+     * @return void
+     */
     public static function getDBTableName()
     {
         return 'conf_schedule';
     }
 
+    /**
+     * Имя соединения с БД
+     *
+     * @return void
+     */
     public static function getConnectionName()
     {
         return 'default';
     }
 
+    /**
+     * Метод для создания таблицы
+     *
+     * @return void
+     */
     public static function createDbTable()
     {
         if (
@@ -40,6 +55,11 @@ class ConfScheduleTable extends DataManager
         }
     }
 
+    /**
+     * Метод для удаления таблицы
+     *
+     * @return void
+     */
     public static function deleteDbTable()
     {
         if (
@@ -57,8 +77,14 @@ class ConfScheduleTable extends DataManager
     }
 
 
+    /**
+     * Основной метод ORM для описания полей таблицы и связей с инфоблоками
+     *
+     * @return void
+     */
     public static function getMap()
     {
+        //получаем классы инфоблоков
         $confIblockClass = \Bitrix\Iblock\Iblock::wakeUp(21)->getEntityDataClass();
         $speakerIblockClass = \Bitrix\Iblock\Iblock::wakeUp(20)->getEntityDataClass();
         $roomIblockClass = \Bitrix\Iblock\Iblock::wakeUp(22)->getEntityDataClass();
@@ -83,7 +109,7 @@ class ConfScheduleTable extends DataManager
             ,
             (new Reference(
                 'SPEAKER',
-                $speakerIblockClass, 
+                $speakerIblockClass,
                 Join::on('this.SPEAKER_ID', 'ref.ID')
             ))
                 ->configureJoinType(Join::TYPE_LEFT)
@@ -96,13 +122,13 @@ class ConfScheduleTable extends DataManager
             ))
                 ->configureJoinType(Join::TYPE_LEFT)
             ,
-            //связь с инфоблокоа Аудитории
+            //связь с инфоблоком Аудитории
             (new IntegerField('ROOM_ID'))
                 ->configureNullable()
             ,
             (new Reference(
                 'ROOM',
-                $roomIblockClass, 
+                $roomIblockClass,
                 Join::on('this.ROOM_ID', 'ref.ID')
             ))
                 ->configureJoinType(Join::TYPE_LEFT)
