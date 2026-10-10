@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items iblockUid="lists:speaker" exchangeVersion="2" >
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM"/>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value>Алиева Наргиз Гаджиевна</value>
+ </field>
+ <field name="PREVIEW_PICTURE"/>
+ <field name="PREVIEW_TEXT"/>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE"/>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE"/>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>41</value>
+ </field>
+ <field name="IBLOCK_SECTION"/>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="EMAIL">
+  <value>test1@test.ru</value>
+ </property>
+ <property name="PHONE">
+  <value>+7 (111) 222-33-44</value>
+ </property>
+ <property name="POSITION">
+  <value>Гастроэнтеролог</value>
+ </property>
+</item>
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM"/>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value>Анников Юрий Геннадьевич</value>
+ </field>
+ <field name="PREVIEW_PICTURE"/>
+ <field name="PREVIEW_TEXT"/>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE"/>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE"/>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>42</value>
+ </field>
+ <field name="IBLOCK_SECTION"/>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="EMAIL">
+  <value>test2@test.ru</value>
+ </property>
+ <property name="PHONE">
+  <value>+7 (111) 222-33-45</value>
+ </property>
+ <property name="POSITION">
+  <value>Нейрохирург</value>
+ </property>
+</item>
+
+</items>

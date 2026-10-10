@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items iblockUid="lists:room" exchangeVersion="2" >
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM"/>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value>1-101</value>
+ </field>
+ <field name="PREVIEW_PICTURE"/>
+ <field name="PREVIEW_TEXT"/>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE"/>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE"/>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>44</value>
+ </field>
+ <field name="IBLOCK_SECTION">
+  <value section_depth_level="1">Корпус 1</value>
+ </field>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="CAPACITY">
+  <value>20</value>
+ </property>
+</item>
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM"/>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value>1-102</value>
+ </field>
+ <field name="PREVIEW_PICTURE"/>
+ <field name="PREVIEW_TEXT"/>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE"/>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE"/>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>45</value>
+ </field>
+ <field name="IBLOCK_SECTION">
+  <value section_depth_level="1">Корпус 1</value>
+ </field>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="CAPACITY">
+  <value>20</value>
+ </property>
+</item>
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM"/>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value>2-101</value>
+ </field>
+ <field name="PREVIEW_PICTURE"/>
+ <field name="PREVIEW_TEXT"/>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE"/>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE"/>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>47</value>
+ </field>
+ <field name="IBLOCK_SECTION">
+  <value section_depth_level="1">Корпус 2</value>
+ </field>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="CAPACITY">
+  <value>100</value>
+ </property>
+</item>
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM"/>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value>2-102</value>
+ </field>
+ <field name="PREVIEW_PICTURE"/>
+ <field name="PREVIEW_TEXT"/>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE"/>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE"/>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>48</value>
+ </field>
+ <field name="IBLOCK_SECTION">
+  <value section_depth_level="1">Корпус 2</value>
+ </field>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="CAPACITY">
+  <value>30</value>
+ </property>
+</item>
+
+</items>

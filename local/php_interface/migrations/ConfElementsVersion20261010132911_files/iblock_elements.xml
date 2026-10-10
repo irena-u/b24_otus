@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items iblockUid="lists:conference" exchangeVersion="2" >
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM"/>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value><![CDATA[Особенности дифференциальной диагностики'2026]]></value>
+ </field>
+ <field name="PREVIEW_PICTURE"/>
+ <field name="PREVIEW_TEXT"/>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE"/>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE"/>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>43</value>
+ </field>
+ <field name="IBLOCK_SECTION"/>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="DATE_BEGIN">
+  <value>01.10.2026 11:00:00</value>
+ </property>
+ <property name="DATE_END">
+  <value>02.10.2026 18:00:00</value>
+ </property>
+</item>
+
+</items>
