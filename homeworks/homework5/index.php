@@ -31,7 +31,7 @@ Asset::getInstance()->addCss('//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bo
         <ul class="list-group list-group-flush">
 
             <li class="list-group-item list-group-item-action">
-                <a href="http://192.168.50.33/otus/currencies.php"
+                <a href="/otus/currencies.php"
                    class="d-flex justify-content-between align-items-center">
                 <span>
                     Ссылка на тестовую страницу с компонентом
