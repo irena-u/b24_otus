@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Валюты";
+$arDirProperties = Array(
+
+);
+?>
