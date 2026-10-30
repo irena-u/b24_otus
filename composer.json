@@ -2,6 +2,20 @@
     "require": {
         "symfony/var-dumper": "^7.4",
         "php-sage/sage": "^1.7",
-        "monolog/monolog": "^3.12"
+        "monolog/monolog": "^3.12",
+	"wikimedia/composer-merge-plugin": "^2.1",
+        "phpoffice/phpspreadsheet": "^5.10"
+    },
+    "extra": {
+        "merge-plugin": {
+            "include": [
+                "/home/bitrix/www/bitrix/composer-bx.json"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "wikimedia/composer-merge-plugin": true
+        }
     }
 }
