@@ -6,7 +6,6 @@ use Bitrix\Main\ModuleManager;
 use Bitrix\Main\Application;
 use Bitrix\Main\ORM;
 use Bitrix\Main\IO\Directory;
-use Bitrix\Main\EventManager;
 
 class otus_currency extends \CModule
 {
