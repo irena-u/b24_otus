@@ -134,6 +134,12 @@ class CurrencyTable extends DataManager
                     'title' => Loc::getMessage('CURRENCY_ENTITY_CURRENT_BASE_RATE_FIELD'),
                 ]
             ),
+            new IntegerField(
+                'COMPANY_ID',
+                [
+                    'title' => Loc::getMessage('CURRENCY_ENTITY_COMPANY_ID_FIELD'),
+                ]
+            ),
         ];
     }
 }

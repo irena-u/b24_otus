@@ -21,7 +21,7 @@ class CrmMenu
         $tabs = $event->getParameter('tabs');
 
         switch ($entityTypeID) {
-            case \CCrmOwnerType::Deal:
+            case \CCrmOwnerType::Company:
                 $tabs = self::getCurrencies($tabs, $entityId);
                 break;
         }
@@ -40,14 +40,7 @@ class CrmMenu
      */
     public static function getCurrencies(array $tabs, int $id): array
     {
-        $request = Application::getInstance()->getContext()->getRequest();
-        $gridId = 'currency_grid_id';
-        if (isset($request[$gridId])) {
-            $page = explode('page-', $request[$gridId]);
-            $page = $page[1];
-        } else {
-            $page = 1;
-        }
+
         $tabs[] = [
            'id' => 'deals_currencies',
            'name' => Loc::getMessage('MENU_CURRENCIES'),
@@ -61,6 +54,7 @@ class CrmMenu
                        'FILTER_ID' => 'currency_grid_filter',
                         'SHOW_CHECKBOXES' => 'Y',
                         'nPageSize' => '5',
+                        'FILTER' => $id
                    ]
                ]
            ]

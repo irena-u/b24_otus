@@ -30,6 +30,7 @@ $APPLICATION->includeComponent(
         "COLUMNS" => $arResult['COLUMNS'],
         "ROWS" => $arResult['LISTS'],
         "AJAX_MODE" => "Y",
+        "AJAX_LOADER" => $arResult['AJAX_LOADER'],
         "AJAX_OPTION_JUMP" => "N",
         "AJAX_OPTION_HISTORY" => "N",
         "SHOW_ROW_CHECKBOXES" => $arResult['SHOW_ROW_CHECKBOXES'],
