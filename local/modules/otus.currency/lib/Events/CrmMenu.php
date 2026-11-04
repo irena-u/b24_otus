@@ -1,0 +1,71 @@
+<?php
+
+namespace Otus\Currency\Events;
+
+use Bitrix\Main\EventResult;
+use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Application;
+
+class CrmMenu
+{
+    /** Функция для обработчика события onEntityDetailsTabsInitialized
+     * отрисовка табов в CRM
+     *
+     * @param \Bitrix\Main\Event $event
+     * @return EventResult
+     */
+    public static function getTab(\Bitrix\Main\Event $event): EventResult
+    {
+        $entityId = $event->getParameter('entityID');
+        $entityTypeID = $event->getParameter('entityTypeID');
+        $tabs = $event->getParameter('tabs');
+
+        switch ($entityTypeID) {
+            case \CCrmOwnerType::Deal:
+                $tabs = self::getCurrencies($tabs, $entityId);
+                break;
+        }
+
+        return new EventResult(EventResult::SUCCESS, [
+            'tabs' => $tabs,
+        ]);
+    }
+
+    /**
+     * Функция для добавления кастомного пункта меню в CRM
+     *
+     * @param array $tabs
+     * @param integer $id
+     * @return array
+     */
+    public static function getCurrencies(array $tabs, int $id): array
+    {
+        $request = Application::getInstance()->getContext()->getRequest();
+        $gridId = 'currency_grid_id';
+        if (isset($request[$gridId])) {
+            $page = explode('page-', $request[$gridId]);
+            $page = $page[1];
+        } else {
+            $page = 1;
+        }
+        $tabs[] = [
+           'id' => 'deals_currencies',
+           'name' => Loc::getMessage('MENU_CURRENCIES'),
+           'enabled' => !empty($id),
+           'loader' => [
+               'serviceUrl' => '/local/components/otus/otus.grid/ajax.php?&site=' . \SITE_ID . '&' . \bitrix_sessid_get(),
+               'componentData' => [
+                   'template' => '',
+                   'params' => [
+                       'GRID_ID' => 'currency_grid_id',
+                       'FILTER_ID' => 'currency_grid_filter',
+                        'SHOW_CHECKBOXES' => 'Y',
+                        'nPageSize' => '5',
+                   ]
+               ]
+           ]
+       ];
+
+        return $tabs;
+    }
+}

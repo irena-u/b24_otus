@@ -9,13 +9,12 @@ class Currency
     /**
      * Получает список валют
      *
-     * @param integer $page
      * @param integer $limit
+     * @param integer $offset
      * @return array
      */
-    public static function getCurrencyList($page = 1, $limit = 0): array
+    public static function getCurrencyList(int $limit = 0, int $offset = 0): array
     {
-        $offset = $limit * ($page - 1);
         $list = [];
         $data = CurrencyTable::getList([
             'select' => ['CURRENCY','SORT','AMOUNT', 'BASE', 'AMOUNT_CNT', 'DATE_UPDATE', 'CREATED_BY','NUMCODE', 'DATE_CREATE', 'MODIFIED_BY'],

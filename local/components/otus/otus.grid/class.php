@@ -6,7 +6,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Bitrix\Main\Loader;
 use Otus\Currency\Currency;
-use Otus\Currency\Models\CurrencyTable; 
+use Otus\Currency\Models\CurrencyTable;
 use App\Debug\Log;
 use Bitrix\Main\SystemException;
 use Bitrix\Main\Context;
@@ -15,6 +15,7 @@ use Bitrix\Main\Type\DateTime;
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\Engine\Contract\Controllerable;
 use Bitrix\Main\Engine\Contract;
+use Bitrix\Main\UI\PageNavigation;
 
 class OtusGridComponent extends CBitrixComponent
 {
@@ -22,9 +23,6 @@ class OtusGridComponent extends CBitrixComponent
 
     public function onPrepareComponentParams($arParams): array
     {
-        // TODO: prepare or format component params
-        //$arParams['USERNAME'] ??= 'default value';
-
         return $arParams;
     }
 
@@ -41,14 +39,12 @@ class OtusGridComponent extends CBitrixComponent
     private function prepareResult(): void
     {
         try {
-            $this->$request = Application::getInstance()->getContext()->getRequest();
-            $gridId = 'currency_grid_id';
-            if (isset($this->$request[$gridId])) {
-                $page = explode('page-', $this->$request[$gridId]);
-                $page = $page[1];
-            } else {
-                $page = 1;
-            }
+            $count = CurrencyTable::getCount();
+            $nav = new PageNavigation("currency_grid_id");
+            $nav->allowAllRecords(false)
+                ->setPageSize($this->arParams['nPageSize'] ?? 5)
+                ->setRecordCount($count)
+                ->initFromUri();
 
             $this->arResult['SHOW_ROW_CHECKBOXES'] = false;
 
@@ -58,11 +54,12 @@ class OtusGridComponent extends CBitrixComponent
             $currencyTable = new Currency();
             $this->arResult['COLUMNS'] = $currencyTable->getColumn(); // получаем названия полей таблицы
 
-            $this->arResult['nPageSize'] = (empty($this->arParams['nPageSize'])) ? $selectedPageSize : $this->arParams['nPageSize'];
+            $this->arResult['nPageSize'] = (empty($this->arParams['nPageSize'])) ? 5 : $this->arParams['nPageSize'];
 
             $this->arResult['LISTS'] = [];
-            $this->arResult['LISTS'] = Currency::getCurrencyList($page,$this->arParams['nPageSize']);
-            $this->arResult['COUNT'] = CurrencyTable::getCount(); // количество записей
+            $this->arResult['LISTS'] = Currency::getCurrencyList($nav->getLimit(), $nav->getOffset());
+            $this->arResult['NAV_OBJECT'] = $nav;
+            $this->arResult['COUNT'] = $count; // количество записей
         } catch (\Throwable $e) {
             ShowError($e->getMessage());
         }

@@ -3,10 +3,11 @@
 use Bitrix\Main\Web\Json;
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\UI\Extension;
+use Bitrix\Main\Grid\Options;
+use Bitrix\Main\UI\PageNavigation;
 
-if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
-{
-	die();
+if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
+    die();
 }
 
 /**
@@ -16,29 +17,25 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
  * @var CBitrixComponent $component
  * @var CBitrixComponentTemplate $this
  */
- 
-$APPLICATION->SetTitle(Loc::getMessage('OTUS_GRID_TITLE'));
-
-// load your js extension (https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=12435)
-//Extension::load('otus.grid');
-
+$this->setFrameMode(true);
+$gridId = 'currency_grid_id';
 ?>
-
-<div id="otus-grid" class="otus-grid"></div>
-
-<!-- Example -->
-Example of using params:<br>
-Safe: <?= $arParams['USERNAME'] ?> and <?= htmlspecialcharsbx($arParams['~USERNAME']) ?>
-
-<script>
-BX.ready(() => {
-	const container = document.getElementById('otus-grid');
-	const fruits = <?= Json::encode($arResult['FRUITS']) ?>;
-
-	// render extension inside container
-	// new BX.Otus.Grid({
-	// 	container,
-	// 	fruits,
-	// });
-});
-</script>
+<?php
+$APPLICATION->includeComponent(
+    "bitrix:main.ui.grid",
+    "",
+    [
+        "GRID_ID" => $gridId,
+        "NAV_OBJECT" => $arResult['NAV_OBJECT'],
+        "COLUMNS" => $arResult['COLUMNS'],
+        "ROWS" => $arResult['LISTS'],
+        "AJAX_MODE" => "Y",
+        "AJAX_OPTION_JUMP" => "N",
+        "AJAX_OPTION_HISTORY" => "N",
+        "SHOW_ROW_CHECKBOXES" => $arResult['SHOW_ROW_CHECKBOXES'],
+        "SHOW_SELECTED_COUNTER" => true,
+        "SHOW_PAGESIZE" => false,
+        "TOTAL_ROWS_COUNT" => $arResult['COUNT']
+    ]
+);
+?>

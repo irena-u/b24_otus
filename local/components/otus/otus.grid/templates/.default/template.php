@@ -19,14 +19,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
  */
 $this->setFrameMode(true);
 $gridId = 'currency_grid_id';
-
-$nav = new \Bitrix\Main\UI\PageNavigation($gridId);
-$nav->setRecordCount($arResult['COUNT']);
-$gridOptions = new Options($gridId);
-$navOption = $gridOptions->GetNavParams();
-$nav->allowAllRecords(false)
-    ->setPageSize($arParams['nPageSize']);
-$nav->initFromUri();
 ?>
 <?php
 $APPLICATION->includeComponent(
@@ -34,11 +26,9 @@ $APPLICATION->includeComponent(
     "",
     [
         "GRID_ID" => $gridId,
-        "NAV_OBJECT" => $nav,
-        "PAGE_SIZES" => $pageSizes,
+        "NAV_OBJECT" => $arResult['NAV_OBJECT'],
         "COLUMNS" => $arResult['COLUMNS'],
         "ROWS" => $arResult['LISTS'],
-        "NAV_OBJECT" => $nav,
         "AJAX_MODE" => "Y",
         "AJAX_OPTION_JUMP" => "N",
         "AJAX_OPTION_HISTORY" => "N",

@@ -6,6 +6,7 @@ use Bitrix\Main\ModuleManager;
 use Bitrix\Main\Application;
 use Bitrix\Main\ORM;
 use Bitrix\Main\IO\Directory;
+use Bitrix\Main\EventManager;
 
 class otus_currency extends \CModule
 {
@@ -13,7 +14,7 @@ class otus_currency extends \CModule
     {
         $this->MODULE_ID = 'otus.currency';
         $this->MODULE_NAME = Loc::getMessage('OTUS_CURRENCY_NAME');
-        $this->MODULE_DESCRIPTION = Loc::getMessage('OTUS_URRENCY_DESCRIPTION');
+        $this->MODULE_DESCRIPTION = Loc::getMessage('OTUS_CURRENCY_DESCRIPTION');
 
         require __DIR__ . '/version.php';
 
@@ -87,9 +88,7 @@ class otus_currency extends \CModule
 
     public function InstallEvents()
     {
-        // установка почтовых и СМС шаблонов
-        // $type = new CEventType;
-        // $type->Add(...);
+        EventManager::getInstance()->registerEventHandler('crm', 'onEntityDetailsTabsInitialized', $this->MODULE_ID, 'Otus\\Currency\\Events\\CrmMenu', 'getTab');
     }
 
     public function InstallFiles()
@@ -115,5 +114,10 @@ class otus_currency extends \CModule
         // удаление директорий
         Directory::deleteDirectory($_SERVER['DOCUMENT_ROOT'] . '/local/components/otus/otus.grid/');
         Directory::deleteDirectory($_SERVER['DOCUMENT_ROOT'] . '/currency/');
+    }
+
+    public function UnInstallEvents()
+    {
+        EventManager::getInstance()->unRegisterEventHandler('crm', 'onEntityDetailsTabsInitialized', $this->MODULE_ID, 'Otus\\Currency\\Events\\CrmMenu', 'getTab');
     }
 }
