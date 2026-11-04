@@ -39,6 +39,12 @@ class OtusGridComponent extends CBitrixComponent
     private function prepareResult(): void
     {
         try {
+
+            if ($this->arParams['FILTER']) {
+                $arFilter = ["COMPANY_ID" => ((int)$this->arParams['FILTER']) ];
+            } else {
+                $arFilter = [];
+            }
             $request = Application::getInstance()->getContext()->getRequest();
             $server  = $request->getServer();
 
@@ -53,11 +59,6 @@ class OtusGridComponent extends CBitrixComponent
                     ],
                 ],
             ];
-            if ($this->arParams['FILTER']) {
-                $arFilter = ["COMPANY_ID" => ((int)$this->arParams['FILTER']) ];
-            } else {
-                $arFilter = [];
-            }
             $count = CurrencyTable::getCount($arFilter);
             $nav = new PageNavigation("currency_grid_id");
             $nav->allowAllRecords(false)
@@ -76,9 +77,10 @@ class OtusGridComponent extends CBitrixComponent
             $this->arResult['nPageSize'] = (empty($this->arParams['nPageSize'])) ? 5 : $this->arParams['nPageSize'];
 
             $this->arResult['LISTS'] = [];
-            $this->arResult['LISTS'] = Currency::getCurrencyList($nav->getLimit(), $nav->getOffset(),$arFilter);
+            $this->arResult['LISTS'] = Currency::getCurrencyList($nav->getLimit(), $nav->getOffset(), $arFilter);
             $this->arResult['NAV_OBJECT'] = $nav;
-            $this->arResult['COUNT'] = $count; // количество записей
+            $this->arResult['COUNT'] = $count;
+
         } catch (\Throwable $e) {
             ShowError($e->getMessage());
         }

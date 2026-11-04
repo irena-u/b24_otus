@@ -13,7 +13,7 @@ class Currency
      * @param integer $offset
      * @return array
      */
-    public static function getCurrencyList(int $limit = 0, int $offset = 0, $arFilter): array
+    public static function getCurrencyList(int $limit = 0, int $offset = 0, array $arFilter = []): array
     {
         $list = [];
         $data = CurrencyTable::getList([
@@ -21,7 +21,7 @@ class Currency
             'order' => ['SORT' => 'ASC', 'CURRENCY' => 'ASC'],
             'limit' => $limit,
             'offset' => $offset,
-            'filter' => $arFilter??[],
+            'filter' => $arFilter,
         ]);
 
         while ($item = $data->fetch()) {

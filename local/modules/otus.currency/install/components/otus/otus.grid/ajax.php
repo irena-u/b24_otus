@@ -39,6 +39,7 @@ $ajaxLoaderParams = [
 ];
 
 $componentParams['AJAX_LOADER'] = $ajaxLoaderParams;
+
 $APPLICATION->IncludeComponent(
     'bitrix:ui.sidepanel.wrapper',
     '',

@@ -5,6 +5,7 @@ namespace Otus\Currency\Events;
 use Bitrix\Main\EventResult;
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\Application;
+use \Bitrix\Main\Config\Option;
 
 class CrmMenu
 {
@@ -53,7 +54,7 @@ class CrmMenu
                        'GRID_ID' => 'currency_grid_id',
                        'FILTER_ID' => 'currency_grid_filter',
                         'SHOW_CHECKBOXES' => 'Y',
-                        'nPageSize' => '5',
+                        'nPageSize' => Option::get('otus.currency', 'pagesize', 5),
                         'FILTER' => $id
                    ]
                ]
