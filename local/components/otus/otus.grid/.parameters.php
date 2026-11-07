@@ -23,13 +23,7 @@ $arComponentParameters = array(
             "PARENT" => "LIST",
             "NAME" => GetMessage("NUM_PAGE"),
             "TYPE" => "STRING",
-            "DEFAULT" => "20"
+            "DEFAULT" => "5"
         ),
-        "FILTER" => array(
-            "PARENT" => "LIST",
-            "NAME" => "ID компании",
-            "TYPE" => "STRING",
-            "DEFAULT" => "",
-        )
     )
 );

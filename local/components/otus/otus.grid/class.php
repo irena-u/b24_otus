@@ -66,7 +66,7 @@ class OtusGridComponent extends CBitrixComponent
 
             $count = CurrencyTable::getCount($arFilter);
             
-            $pageSize = Option::get('otus.currency', 'pagesize', 5);
+            $pageSize = $this->arParams['nPageSize'] ?? Option::get('otus.currency', 'pagesize', 5);
 
             $nav = new PageNavigation("currency_grid_id");
 
