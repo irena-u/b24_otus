@@ -18,25 +18,23 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
  * @var CBitrixComponentTemplate $this
  */
 $this->setFrameMode(true);
-$gridId = 'currency_grid_id';
-?>
-<?php
+
 $APPLICATION->includeComponent(
     "bitrix:main.ui.grid",
     "",
     [
-        "GRID_ID" => $gridId,
+        "GRID_ID" => $arResult["GRID_ID"],
         "NAV_OBJECT" => $arResult['NAV_OBJECT'],
         "COLUMNS" => $arResult['COLUMNS'],
         "ROWS" => $arResult['LISTS'],
         "AJAX_MODE" => "Y",
-        "AJAX_LOADER" => $arResult['AJAX_LOADER'],
         "AJAX_OPTION_JUMP" => "N",
         "AJAX_OPTION_HISTORY" => "N",
+		"AJAX_ID" => \CAjax::getComponentID("bitrix:main.ui.grid", ".default", ''), 
         "SHOW_ROW_CHECKBOXES" => $arResult['SHOW_ROW_CHECKBOXES'],
         "SHOW_SELECTED_COUNTER" => true,
         "SHOW_PAGESIZE" => false,
-        "TOTAL_ROWS_COUNT" => $arResult['COUNT']
-    ]
+        "TOTAL_ROWS_COUNT" => $arResult['COUNT'],
+        "CURRENT_PAGE" => $arResult["CURRENT_PAGE"],
+    ],
 );
-?>

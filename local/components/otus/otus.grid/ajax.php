@@ -25,8 +25,8 @@ global $APPLICATION;
 $APPLICATION->ShowAjaxHead();
 $request = Application::getInstance()->getContext()->getRequest();
 $componentData = $request->get('PARAMS');
-if (is_array($componentData)) {
-    $componentParams = isset($componentData['params']) && is_array($componentData['params']) ? $componentData['params'] : [];
+if(is_array($componentData)){
+   $componentParams = isset($componentData['params']) && is_array($componentData['params']) ? $componentData['params'] : [];
 }
 
 $server = $request->getServer();
@@ -48,7 +48,7 @@ $APPLICATION->IncludeComponent(
        'USE_PADDING' => true,
        'POPUP_COMPONENT_NAME' => 'otus:otus.grid',
        'POPUP_COMPONENT_TEMPLATE_NAME' => $componentData['template'] ?? '',
-       'POPUP_COMPONENT_PARAMS' => $componentParams
+       'POPUP_COMPONENT_PARAMS' => $componentParams,
    ]
 );
 

@@ -5,7 +5,7 @@ namespace Otus\Currency\Events;
 use Bitrix\Main\EventResult;
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\Application;
-use \Bitrix\Main\Config\Option;
+use Bitrix\Main\Config\Option;
 
 class CrmMenu
 {
@@ -41,21 +41,22 @@ class CrmMenu
      */
     public static function getCurrencies(array $tabs, int $id): array
     {
+        $gridId = 'currency_grid_id';
 
         $tabs[] = [
            'id' => 'deals_currencies',
            'name' => Loc::getMessage('MENU_CURRENCIES'),
            'enabled' => !empty($id),
            'loader' => [
-               'serviceUrl' => '/local/components/otus/otus.grid/ajax.php?&site=' . \SITE_ID . '&' . \bitrix_sessid_get(),
+               'serviceUrl' => '/local/components/otus/otus.grid/ajax.php?&site=' . \SITE_ID . '&' . \bitrix_sessid_get(). '&FILTER=' . (int)$id, //тут костыль, как правильно?
                'componentData' => [
                    'template' => '',
                    'params' => [
-                       'GRID_ID' => 'currency_grid_id',
-                       'FILTER_ID' => 'currency_grid_filter',
+                        'GRID_ID' => $gridId,
+                        'FILTER_ID' => 'filter_'.$gridId,
                         'SHOW_CHECKBOXES' => 'Y',
                         'nPageSize' => Option::get('otus.currency', 'pagesize', 5),
-                        'FILTER' => $id
+                        'FILTER' => ['COMPANY_ID' => $id] //этот фильтр работает только при загрузке таба, при переходе по страницам теряется, поэтому дополнительно передала в GET
                    ]
                ]
            ]
