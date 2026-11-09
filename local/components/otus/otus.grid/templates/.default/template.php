@@ -19,6 +19,13 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
  */
 $this->setFrameMode(true);
 
+// $APPLICATION->IncludeComponent('bitrix:main.ui.filter', '', [
+//     'FILTER_ID' => $arResult['FILTER_ID'],
+//     'GRID_ID' => $arResult['GRID_ID'],
+//     'FILTER' => $arResult['FILTER_FIELDS'],
+//     'ENABLE_LABEL' => true,
+// ]);
+
 $APPLICATION->includeComponent(
     "bitrix:main.ui.grid",
     "",

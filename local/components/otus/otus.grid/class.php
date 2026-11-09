@@ -18,6 +18,7 @@ use Bitrix\Main\Engine\Contract;
 use Bitrix\Main\UI\PageNavigation;
 use Bitrix\Main\Filter\Filter;
 use Bitrix\Main\Config\Option;
+use Bitrix\Main\UI\Filter\Options as FilterOptions;
 
 class OtusGridComponent extends CBitrixComponent
 {
@@ -50,10 +51,19 @@ class OtusGridComponent extends CBitrixComponent
                     "filterable" => true
                 ),
             );
-            $this->arResult['GRID_ID'] = 'currency_grid_id';
-            $this->arResult['FILTER_ID'] = 'filter_currency_grid_id';
+            $gridId = $this->arResult['GRID_ID'] = 'currency_grid_id';
+            $this->arResult['FILTER_ID'] = 'currency_grid_id';
+            
+            // $filterFields = [
+            //     ['id' => 'COMPANY_ID', 'name' => 'Компания', 'type' => 'string'],
+            // ];
+            // $filterValues = (new FilterOptions($gridId))->getFilter($filterFields);
 
-            //$filterOption = new Bitrix\Main\UI\Filter\Options($this->arResult['FILTER_ID']);
+            // if ((int)($filterValues['COMPANY_ID'] ?? 0) > 0)
+            // {
+            //     $arFilter['=COMPANY_ID'] = (int)$filterValues['COMPANY_ID'];
+            // }
+            // $this->arResult['FILTER_FIELDS'] = $filterFields;
 
             if (!empty($this->arParams['FILTER']) && is_array($this->arParams['FILTER'])) {
                 $arFilter = $this->arParams['FILTER'];

@@ -53,7 +53,7 @@ class CrmMenu
                    'template' => '',
                    'params' => [
                         'GRID_ID' => $gridId,
-                        'FILTER_ID' => 'filter_'.$gridId,
+                        'FILTER_ID' => $gridId,
                         'SHOW_CHECKBOXES' => 'Y',
                         'nPageSize' => Option::get('otus.currency', 'pagesize', 5),
                         'FILTER' => ['COMPANY_ID' => $id] //этот фильтр работает только при загрузке таба, при переходе по страницам теряется, поэтому дополнительно передала в GET
