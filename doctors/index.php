@@ -343,30 +343,30 @@ if (!$page && !$action) {
     } else {
         echo "<p>Доктор не найден</p>";
     }
+    $arResult['DOCTORS'] = [];
+    foreach ($arDoctors as $i=>$doctor) {
+        $arResult['DOCTORS'][$doctor['ID']]['ID'] = $doctor['ID'];
+        $arResult['DOCTORS'][$doctor['ID']]['NAME'] = $doctor['NAME'] ?? 'newvalue';
+        $arResult['DOCTORS'][$doctor['ID']]['LAST_NAME'] = $doctor['LAST_NAME'] ?? '';
+        $arResult['DOCTORS'][$doctor['ID']]['FIRST_NAME'] = $doctor['FIRST_NAME'] ?? '';
+        $arResult['DOCTORS'][$doctor['ID']]['SECOND_NAME'] = $doctor['SECOND_NAME'] ?? '';
 
-    $arResult = [];
-    foreach($arDoctors as $i=> $doctor) {
-            $arResult = [
-                'ID'          => $doctor['ID'],
-                'NAME'        => $doctor['NAME'] ?? 'newvalue',
-                'LAST_NAME'   => $doctor['LAST_NAME']   ?? '',
-                'FIRST_NAME'  => $doctor['FIRST_NAME']  ?? '',
-                'SECOND_NAME' => $doctor['SECOND_NAME'] ?? '',
-            ];
-            if (array_key_exists('SERVICES_NAME', $doctor)) {
-                $arResult['SERVICES'][$doctor['SERVICES_ID']] = $doctor['SERVICES_NAME'];
-            }
+        if (array_key_exists('SERVICES_NAME', $doctor)) {
+            $arResult['DOCTORS'][$doctor['ID']]['SERVICES'][$doctor['SERVICES_ID']] = $doctor['SERVICES_NAME'];
+        }
     }
 
     ?>
-        <h2><?= $arResult['LAST_NAME'].' '. $arResult['FIRST_NAME']. ' '. $arResult['SECOND_NAME']?></h3>
+    <? foreach ($arResult['DOCTORS'] as $doctor): ?>
+        <h2><?= $doctor['LAST_NAME'].' '. $doctor['FIRST_NAME']. ' '. $doctor['SECOND_NAME']?></h3>
         <ul>
         <?
-        foreach($arResult['SERVICES'] as $i => $item) {
+        foreach($doctor['SERVICES'] as $k => $item) {
             echo "<li>{$item}</li>";
         }
         ?>
         </ul>
+    <? endforeach; ?>
     <?php
 }
 ?>
