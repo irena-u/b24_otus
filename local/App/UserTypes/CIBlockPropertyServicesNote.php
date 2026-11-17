@@ -387,7 +387,8 @@ class CIBlockPropertyServicesNote
 
                 var popup = new BX.PopupWindow('ajax-popup', null, {
                     // прелоадер
-                    content: 'Загрузка...',
+                    //content: 'Загрузка...',
+					content: '<div>Это контент моего первого всплывающего окна! id процедуры'+elementId+'</div>',
                     closeIcon: true,
                     titleBar: 'Бронирование'
                 });
@@ -395,7 +396,7 @@ class CIBlockPropertyServicesNote
                 popup.show();
 
                 // Ajax запрос в компонент
-                BX.ajax.runAction('my.module:controller.action', {
+                /*BX.ajax.runAction('my.module:controller.action', {
                     data: { id: elementId }
                 }).then(function(response) {
                     // вставляем полученный HTML в окно
@@ -403,7 +404,7 @@ class CIBlockPropertyServicesNote
                 }, function(response) {
                     // в случае ошибки, выводим
                     popup.setContent('Ошибка: ' + response.errors[0].message);
-                });
+                });*/
 
                 return BX.PreventDefault(e);
             });
