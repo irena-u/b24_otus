@@ -374,21 +374,22 @@ class CIBlockPropertyServicesNote
 				}
 				else
 				{
-					$strResult = '<a href="#" data-id="'.$cache[$arValue['VALUE']]['ID'].'" id="service_'. $cache[$arValue['VALUE']]['ID'] .'">'.$cache[$arValue['VALUE']]['NAME'].'</a>';
+					$strResult = '<a href="#" data-id="'.$cache[$arValue['VALUE']]['ID'].'" data-doctor="'.$arProperty["ELEMENT_ID"].'" id="service_'.$arProperty["ELEMENT_ID"].'_'. $cache[$arValue['VALUE']]['ID'] .'">'.$cache[$arValue['VALUE']]['NAME'].'</a>';
 				}
 			}
 		}
         $strResult .= "
         <script>
         BX.ready(function() {
-            BX.bind(BX('service_{$cache[$arValue['VALUE']]['ID']}'), 'click', function(e) {
+            BX.bind(BX('service_{$arProperty["ELEMENT_ID"]}_{$cache[$arValue['VALUE']]['ID']}'), 'click', function(e) {
                 // получаем ID из data-атрибута кнопки
-                let elementId = this.dataset.id;
+                let elementId = this.dataset.id,
+					doctorId = this.dataset.doctor;
 
                 var popup = new BX.PopupWindow('ajax-popup', null, {
                     // прелоадер
                     //content: 'Загрузка...',
-					content: '<div>Это контент моего первого всплывающего окна! id процедуры'+elementId+'</div>',
+					content: '<div>Это контент моего первого всплывающего окна! id врача' + doctorId + ' id процедуры ' +elementId+ '</div>',
                     closeIcon: true,
                     titleBar: 'Бронирование'
                 });
@@ -396,15 +397,25 @@ class CIBlockPropertyServicesNote
                 popup.show();
 
                 // Ajax запрос в компонент
-                /*BX.ajax.runAction('my.module:controller.action', {
-                    data: { id: elementId }
-                }).then(function(response) {
+                BX.ajax.runComponentAction(
+					'otus:doctor.note',
+					'getform',
+					{
+						mode: 'class',
+                    	data: { id: elementId, doctor_id: doctorId},
+						method: 'POST',
+                	}
+					).then(function(response) {
+					//console.log('Полученное значение:' + response.data)
+
                     // вставляем полученный HTML в окно
-                    popup.setContent(response.data.html);
+                    popup.setContent(response.data); //.html
+					
                 }, function(response) {
                     // в случае ошибки, выводим
+					console.error('Error executing request:', error);
                     popup.setContent('Ошибка: ' + response.errors[0].message);
-                });*/
+                });
 
                 return BX.PreventDefault(e);
             });

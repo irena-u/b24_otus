@@ -22,9 +22,10 @@ $APPLICATION->SetTitle(Loc::getMessage('DOCTOR_NOTE_TITLE'));
 $fioValue = $arResult["FIO"] ?? "";
 $dateValue = $arResult["DATE"] ?? "";
 $timeValue = $arResult["TIME"] ?? "";
-$serviceID = $arResult['SERVICE']['ID'] ?? "Процедура не выбрана";
-$serviceName = $arResult['SERVICE']['NAME'] ?? "Процедура не выбрана";
-$doctorName = $arResult['SERVICE']['DOCTOR'] ?? "Врач не выбран";
+$serviceId = $arParams['SERVICE_ID'] ?? 0;
+$serviceName = $arResult['SERVICE_NAME'] ?? "Процедура не выбрана";
+$doctorName = $arResult['DOCTOR_NAME'] ?? "Врач не выбран";
+$doctorId = $arParams['DOCTOR_ID'] ?? 0;
 
 // Генерация списка времени с шагом 30 минут (с 8:00 до 17:30)
 $timeOptions = [];
@@ -115,7 +116,7 @@ foreach ($datePeriod as $dt) {
                     <!-- Поле Даты с календарем -->
                     <div class="ui-ctl ui-ctl-after-icon ui-ctl-dropdown">
                         <div class="ui-ctl-after ui-ctl-icon-calendar"></div>
-                        <select name="DATE" class="ui-ctl-element">
+                        <select id="service_date" name="SERVICE_DATE" class="ui-ctl-element">
                             <?php foreach ($dateOptions as $val => $label): ?>
                                 <option value="<?= $val ?>" <?= ($dateValue === $val ? 'selected' : '') ?>>
                                     <?= $label ?>
@@ -133,7 +134,7 @@ foreach ($datePeriod as $dt) {
                     <!-- Поле Времени (Выпадающий список с интервалами) -->
                     <div class="ui-ctl ui-ctl-after-icon ui-ctl-dropdown">
                         <div class="ui-ctl-after ui-ctl-icon-angle"></div>
-                        <select name="TIME" class="ui-ctl-element">
+                        <select id="service_time" name="SERVICE_TIME" class="ui-ctl-element">
                             <?php foreach ($timeOptions as $val => $label): ?>
                                 <option value="<?= $val ?>" <?= ($timeValue === $val ? 'selected' : '') ?>>
                                     <?= $label ?>
@@ -158,7 +159,7 @@ foreach ($datePeriod as $dt) {
                        value="<?= htmlspecialcharsbx($serviceName) ?>" 
                        readonly 
                        style="background-color: #f5f5f5; cursor: not-allowed;">
-                <input type="hidden" name="SERVICE_ID" value="<?= htmlspecialcharsbx($serviceID) ?>">
+                <input type="hidden" name="SERVICE_ID" value="<?= htmlspecialcharsbx($serviceId) ?>">
                 </div>
             </div>
         </div>
@@ -177,6 +178,7 @@ foreach ($datePeriod as $dt) {
                        value="<?= htmlspecialcharsbx($doctorName) ?>" 
                        readonly 
                        style="background-color: #f5f5f5; cursor: not-allowed;">
+                <input type="hidden" name="DOCTOR_ID" value="<?= htmlspecialcharsbx($doctorId) ?>">
                 </div>
             </div>
         </div>
@@ -193,14 +195,5 @@ foreach ($datePeriod as $dt) {
 </form>
 
 <script>
-BX.ready(() => {
-    const container = document.getElementById('doctor-note');
-    const fruits = <?= Json::encode($arResult['SERVICE']) ?>;
-    console.log(fruits);
-    // render extension inside container
-    // new BX.Doctor.Note({
-    // 	container,
-    // 	fruits,
-    // });
-});
+
 </script>
