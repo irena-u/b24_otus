@@ -14,16 +14,18 @@ Asset::getInstance()->addCss('//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bo
 
 <h4 class="mb-3">Пояснительная записка</h4>
 <div>
-    Тут добавить описание того что и как было реализовано.
+    <ul>
+    <li>Создала список Бронирование</li>
+    <li>Создала класс кастомного типа свойства инфоблока наподобие Привязка к элементу инфоблока</li>
+    <li>Написала контроллер компонента для сохранения данных</li>
+    <li>При клике на значение в публичной части появляется попап с формой. Показывает поля ФИО, дата (ближайшие 2 недели) и время</li>
+    <li>При клике на кнопку проверяет есть ли запись у этого врача на выбранное время</li>
+    <li>Если записи нет, то сохраняет запись в инфоблок Бронирование</li>
+    </ul>
 </div>
 <br>
 <br>
 <hr>
-
-
-    <div style="color: red;font-style: italic;">
-        &darr;&darr;&darr; ссылки ниже заменить на свои &darr;&darr;&darr;
-    </div>
 
     <div class="card shadow-sm mt-4">
         <div class="card-header bg-success text-white">
@@ -54,12 +56,22 @@ Asset::getInstance()->addCss('//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bo
                 </span>
                 </a>
             </li>
-
             <li class="list-group-item list-group-item-action">
-                <a href="/bitrix/admin/fileman_file_view.php?path=/local/App/Debug/Log.php"
+                <a href="/bitrix/admin/fileman_file_view.php?path=%2Flocal%2FApp%2FUserTypes%2FCIBlockPropertyServicesNote.php&site=s1&lang=ru"
                    class="d-flex justify-content-between align-items-center">
                 <span>
-                    Ссылки на просмотр кода основных файлов ДЗ (связь таблиц, ORM, классы  и т.д.)
+                    Класс, реализующий пользовательский тип свойства инфоблока "Процедуры Запись"
+                </span>
+                    <span class="badge bg-warning">
+                    файл в админке
+                </span>
+                </a>
+            </li>
+                <li class="list-group-item list-group-item-action">
+                <a href="/bitrix/admin/fileman_file_view.php?path=%2Flocal%2Fcomponents%2Fotus%2Fdoctor.note%2Fclass.php&site=s1&lang=ru"
+                   class="d-flex justify-content-between align-items-center">
+                <span>
+                    Контроллер компонента
                 </span>
                     <span class="badge bg-warning">
                     файл в админке
