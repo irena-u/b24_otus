@@ -53,26 +53,6 @@ class DoctorNoteComponent extends CBitrixComponent implements Controllerable
     }
 
     /**
-     * Получаем список записей из Бронирование для доктора
-     *
-     * @param integer $doctorId
-     * @param integer $serviceId
-     * @param string $noteDate
-     * @return array
-     */
-    public function getNotesList(int $doctorId, int $serviceId = 0, string $noteDate = ""): array
-    {
-        $res = [];
-
-        // $res = [
-        //         "23.11.2026 15:00",
-        //         "23.11.2026 15:30",
-        // ];
-
-        return $res;
-    }
-
-    /**
      * Получает название процедуры
      *
      * @param integer $id
@@ -133,10 +113,9 @@ class DoctorNoteComponent extends CBitrixComponent implements Controllerable
     public function getformAction(int $id = 0, int $doctor_id = 0)
     {
         $doctorId = $doctor_id;
-        $arNotes = $this->getNotesList($doctorId);
+        //$arNotes = $this->getNotesList($doctorId);
         $doctorName = $this->getDoctorName($doctorId);
         $serviceName = $this->getServiceName($id);
-       //return $id.' '.implode(',',$arNotes);
 
         $savedResult = $this->arResult;          // сохранили, что было
         $this->arParams = [
@@ -144,7 +123,7 @@ class DoctorNoteComponent extends CBitrixComponent implements Controllerable
             'DOCTOR_ID' => $doctorId,
         ];
         $this->arResult = [
-            'NOTES' => $arNotes,
+            //'NOTES' => $arNotes,
             'DOCTOR_NAME' => $doctorName,
             'SERVICE_NAME' => $serviceName,
         ];
@@ -158,12 +137,16 @@ class DoctorNoteComponent extends CBitrixComponent implements Controllerable
         
     }
 
-    public function addnoteAction($fio,$service_id,$doctor_id,$service_date,$service_time) {
+    public function addnoteAction($fio,$service_id,$doctor_id,$service_date) {
+        if (!Loader::includeModule('iblock')) {
+            return "";
+        }
+
         $fields = [
             'NAME' => $fio,
             'SERVICE_ID' => $service_id,
             'DOCTOR_ID' => $doctor_id,
-            'TIME'  => $service_date.' '.$service_time.':00',
+            'SERVICE_DATE'  => $service_date,
         ];
         if (check_bitrix_sessid() && !empty($fields) ) {
         //Добавляем элемент в инфоблок

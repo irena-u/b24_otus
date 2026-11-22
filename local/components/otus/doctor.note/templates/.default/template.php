@@ -27,10 +27,10 @@ $serviceName = $arResult['SERVICE_NAME'] ?? "Процедура не выбра�
 $doctorName = $arResult['DOCTOR_NAME'] ?? "Врач не выбран";
 $doctorId = $arParams['DOCTOR_ID'] ?? 0;
 
-// Генерация списка времени с шагом 30 минут (с 8:00 до 17:30)
+// Генерация списка времени с шагом 30 минут (с 8:00 до 12:30)
 $timeOptions = [];
 $start = new DateTime('08:00');
-$end = new DateTime('17:30');
+$end = new DateTime('12:30');
 $interval = new DateInterval('PT30M');
 $period = new DatePeriod($start, $interval, $end->modify('+1 minute'));
 
