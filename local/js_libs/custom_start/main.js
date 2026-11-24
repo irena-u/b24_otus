@@ -9,7 +9,7 @@ var skipConfirm = false;
         
         var arBtns = document.querySelectorAll('.timeman-instant-container button');
         arBtns.forEach(element => {
-            if (element.innerText !== 'Начать' && element.innerText !== 'Возобновить') {
+            if (element.innerText !== 'Начать рабочий день' && element.innerText !== 'Возобновить') {
                 return;
             }
             console.log('Нужная кнопка');
@@ -20,8 +20,9 @@ var skipConfirm = false;
             }
       
             element.addEventListener('click', function (e) {
-                e.stopImmediatePropagation();
                 e.preventDefault();
+                e.stopImmediatePropagation();
+
                 var messageBox = new BX.UI.Dialogs.MessageBox({
                     message: "Вы действительно хотите начать?",
                     title: "Подтверждение действия",
@@ -34,6 +35,7 @@ var skipConfirm = false;
                         // действие при подтверждении
                         skipConfirm = true;
                         element.click();
+                        
                     },
                     onCancel: function (messageBox) {
                         console.log("onCancel");
