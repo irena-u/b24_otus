@@ -10,7 +10,7 @@ class CustomEvents
             'custom_start' => array(
                 'js' => '/local/js_libs/custom_start/main.js',
                 //'css' => '/local/js_libs/custom_start/main.css',
-                'rel' => array("ui.dialogs.messagebox","popup")
+                'rel' => array("ui.dialogs.messagebox","popup","timeman")
             )
         );
         foreach ($arJsConfig as $ext => $arExt) {

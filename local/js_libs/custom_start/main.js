@@ -1,8 +1,4 @@
-var skipConfirm = false;   
-                
-    BX.addCustomEvent("onTimeManDataRecieved", function (params) {
-     console.log('onTimeManDataRecieved');
-     console.log(params);
+BX.addCustomEvent("onTimeManDataRecieved", function (params) {
         if (params["STATE"]!=="CLOSED") {
             return;
         }
@@ -12,13 +8,10 @@ var skipConfirm = false;
             if (element.innerText !== 'Начать рабочий день' && element.innerText !== 'Возобновить') {
                 return;
             }
-            console.log('Нужная кнопка');
-            // пропускаем один раз (после подтверждения)
-            if (skipConfirm) {
-                skipConfirm = false;
-                return; // не мешаем штатному обработчику
-            }
-      
+
+            if (element.dataset.confirmBound === '1') return; // не навешиваем повторно
+            element.dataset.confirmBound = '1';
+            
             element.addEventListener('click', function (e) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
@@ -30,12 +23,13 @@ var skipConfirm = false;
                     okCaption: "Да",
                     cancelCaption: "Нет",
                     onOk: function (messageBox) {
+
                         console.log("onOk");
                         messageBox.close();
                         // действие при подтверждении
-                        skipConfirm = true;
+                        element.dataset.confirmBound = ''; // снимаем защиту
                         element.click();
-                        
+
                     },
                     onCancel: function (messageBox) {
                         console.log("onCancel");
@@ -46,22 +40,6 @@ var skipConfirm = false;
                 
                 messageBox.show();
                 
-            }, true);
+            },{ capture: true, once: true });// once:true — обработчик удалится сам
         });
     });
-
-   
-    /*var popup = BX.PopupWindowManager.create("popup-message", BX('element'), {
-        content: "Hello World!" ,
-        darkMode: true,
-        autoHide: true 
-    });
-        popup.show();*/
-// Dreamsite.all = function () {
-//  BX.addCustomEvent("SidePanel.Slider:onLoad", function () {
-// //  $.get("/local/tools/get_offices.php", function (data) {
-// // $('.task-detail-comments').prepend(data);
-// // });
-// console.log('slider load event')
-//  });
-    // });
